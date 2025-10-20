@@ -1,0 +1,34 @@
+
+
+Closure Store (createStore)- This was mandatory to avoid global mutable state. The tasks array is locked inside the function's scope (the closure), accessible only by the provided API (add, toggle, remove).
+
+Why this is better (Task 4)- Testability: We can create many independent stores for testing without them interfering with each other. Safety: It prevents other code from accidentally changing the tasks array, ensuring only our controlled functions can make updates.
+
+Persistence- We use localStorage with the required key format (focustasks_7533). hydrate loads data on init, and persist saves after every mutation (commit).
+
+List Transformations- Constraint Enforcement: All list modifications (toggle, remove, list) were implemented using only map, filter, and spread syntax (...) to strictly avoid for, while, or .forEach loops.
+
+2. Security and Rendering (Task 2 & 4)
+
+
+HTML Escaping (escapeHTML)- This function is used on line 124 of app.js before inserting any user-supplied title into the DOM via innerHTML.
+
+XSS Sufficiency (Task 4)- It's sufficient here because this is a basic, single-user client application. It stops the user from entering malicious code. It would be insufficient in a large-scale, multi-user system where a server must enforce stricter security like server-side escaping and a proper Content Security Policy (CSP).
+
+Input Validation- The handleAddTask function checks if the title is empty or only whitespace (!title.trim()) and shows a visible error message (validation-message) if it fails.
+
+3. Layout and Responsiveness (Task 1)
+
+Layout Structure- Used native semantic tags: <header>, <main>, and <form>. Headings are in logical order (<h1>, <h2>).
+
+Responsiveness- Used a mobile-first approach. The default CSS creates a single vertical stack.
+
+Media Query Limit- Only one @media query was used (at min-width: 481px). This query activates display: flex on the .lists-container to switch the layout to two side-by-side columns.
+
+4. Interaction and Analytics (Task 3)
+
+Event Delegation- Handlers are attached to the parent elements (formEl, activeListEl, doneListEl) rather than individual task buttons. This uses event.target.getAttribute('data-action') and data-id checks to determine which specific button was clicked, minimizing the number of event listeners on the page.
+
+Unique IDs- IDs are generated using a combination of Date.now() and a random suffix to ensure they are unique across all tasks.
+
+Analytics- The summarize function is a pure function that calculates active, done, and pct directly from the store.list() array. The renderApp function updates the header's analytics-area after every state change to keep it live.
