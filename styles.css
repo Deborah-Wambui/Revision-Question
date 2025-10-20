@@ -1,0 +1,183 @@
+/* --- Base Mobile-First Styles (Default: 1 Column Stack) --- */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 10px;
+    background-color: #f7f7f7; /* Light background */
+    color: #333;
+}
+
+/* Header Styling */
+.app-header {
+    background-color: #2980b9; /* A professional blue */
+    color: white;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+}
+
+.app-header h1 {
+    margin: 0 0 5px 0;
+    font-size: 1.6em;
+}
+
+#analytics-area {
+    font-size: 0.9em;
+    color: #c0d8e8;
+}
+
+/* Add Task Controls */
+.add-task-control {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    align-items: center;
+}
+
+.add-task-control input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    min-width: 150px;
+}
+
+.add-task-control button {
+    padding: 10px 18px;
+    background-color: #2ecc71; /* Green Add button */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-weight: bold;
+}
+
+.add-task-control button:hover {
+    background-color: #27ae60;
+}
+
+/* Validation Message */
+.validation-error {
+    color: #e74c3c;
+    font-size: 0.85em;
+    font-weight: 500;
+    width: 100%; 
+}
+
+/* Task Lists */
+.task-list-section {
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.task-list {
+    list-style: none;
+    padding: 0;
+}
+
+.task-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.task-list li:last-child {
+    border-bottom: none;
+}
+
+/* Task item content */
+.task-content {
+    flex-grow: 1;
+    padding-right: 10px;
+}
+
+/* Visual cue for done tasks */
+.task-done .task-content {
+    text-decoration: line-through;
+    color: #95a5a6;
+}
+
+/* Action Buttons (Toggle/Delete) */
+.task-list button {
+    padding: 6px 10px;
+    margin-left: 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8em;
+    transition: background-color 0.2s;
+}
+
+.btn-toggle {
+    background-color: #3498db; /* Blue for Toggle */
+    color: white;
+}
+
+.btn-toggle:hover {
+    background-color: #2980b9;
+}
+
+.btn-delete {
+    background-color: #e74c3c; /* Red for Delete */
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;
+}
+
+/* Accessibility: Visible Focus Ring */
+:focus {
+    outline: 3px solid #f39c12; /* Distinct color for focus */
+    outline-offset: 2px;
+}
+
+
+/* --- Task 1: Responsive Layout Switch --- */
+/* Maximum one media query allowed: switches to two columns side-by-side */
+@media (min-width: 481px) {
+    /* Main Content Centering */
+    .task-manager {
+        max-width: 900px; 
+        margin: 0 auto;
+    }
+
+    .app-header {
+        /* Align header elements horizontally */
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 900px;
+        margin: 20px auto;
+    }
+
+    .app-header h1 {
+        margin-bottom: 0;
+    }
+
+    /* Flexbox for Two Columns */
+    .lists-container {
+        display: flex;
+        gap: 20px; /* Space between the two columns */
+        align-items: flex-start; /* Align sections to the top */
+    }
+
+    .task-list-section {
+        /* Each column takes equal space */
+        flex: 1; 
+        margin-bottom: 0;
+    }
+}
